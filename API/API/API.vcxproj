@@ -129,10 +129,12 @@
   <ItemGroup>
     <ClCompile Include="API.cpp" />
     <ClCompile Include="ListaGrid.cpp" />
+    <ClCompile Include="Utiles.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Juego.h" />
     <ClInclude Include="ListaGrid.h" />
+    <ClInclude Include="utiles.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

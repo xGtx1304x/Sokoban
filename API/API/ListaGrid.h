@@ -2,6 +2,7 @@
 #define LISTAGRID_H
 
 #include<iostream>
+#include "utiles.h"
 
 using namespace std;
 
@@ -13,9 +14,9 @@ private:
 		NodoGrid* down;
 		NodoGrid* left;
 		NodoGrid* right;
-		string val;
+		char val;
 
-		NodoGrid(string val) : 
+		NodoGrid(char val) : 
 			val(val), up(nullptr), down(nullptr), left(nullptr), right(nullptr) {}
 	};
 
