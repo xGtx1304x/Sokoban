@@ -27,6 +27,7 @@ public:
 	void cargarNivel(string* nivel);
 	bool mover(int dir);
 	bool ganador();
+	void generarMatriz(int n, int m);
 	string toString();
 };
 
