@@ -38,7 +38,6 @@ public:
 	NodoGrid* buscarObjeto(char o);
 	bool mover(Direccion dir);
 	bool ganador();
-	void generarMatriz(int n, int m);
 	string toString();
 };
 

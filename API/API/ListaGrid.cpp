@@ -5,43 +5,19 @@ ListaGrid::ListaGrid(string* nivel) {
 }
 
 ListaGrid::~ListaGrid() {
+    NodoGrid* currentRow = inicio;
 
-}
+    while (currentRow != nullptr) {
+        NodoGrid* current = currentRow;
+        NodoGrid* nextRow = currentRow->down; // Siguiente fila
 
-void ListaGrid::generarMatriz(int n, int m) {
-    if (n <= 0 || m <= 0) {
-        cerr << "Tamaño de matriz no válido." << endl;
-        return;
-    }
-
-    inicio = new NodoGrid('a');
-    NodoGrid* current = inicio;
-
-    for (int i = 1; i < m; i++) {
-        current->right = new NodoGrid('a');
-        current->right->left = current;
-        current = current->right;
-    }
-
-    NodoGrid* prevRow = inicio;
-
-    for (int j = 1; j < n; j++) {
-        current = new NodoGrid('a');
-        prevRow->down = current;
-        current->up = prevRow;
-
-        NodoGrid* firstInRow = current; // Mantén una referencia al primer nodo de la fila
-
-        for (int i = 1; i < m; i++) {
-            current->right = new NodoGrid('a');
-            current->right->left = current;
-            current->right->up = prevRow->right;
-            prevRow->right->down = current->right;
+        while (current != nullptr) {
+            NodoGrid* temp = current;
             current = current->right;
-            prevRow = prevRow->right;
+            delete temp;
         }
 
-        prevRow = firstInRow; // Ahora puedes usar la referencia al primer nodo de la fila
+        currentRow = nextRow; // Ir a la siguiente fila
     }
 }
 
@@ -308,4 +284,30 @@ bool ListaGrid::mover(Direccion dir) {
     }
 
     return false; // Movimiento no válido por defecto
+}
+
+bool ListaGrid::ganador() {
+    // Iniciar desde el primer nodo de la primera fila
+    NodoGrid* current = inicio;
+
+    int x = 0;
+    int y = 0;
+
+    while (current != nullptr) {
+        NodoGrid* rowStart = current; // Marcar el inicio de la fila actual
+        y = 0;
+        // Recorrer la fila actual y concatenar los valores
+        while (current != nullptr) {
+            if (current->val == '$') {
+                return false;
+            }
+            y++;
+            current = current->right;
+        }
+
+        x++;
+        current = rowStart->down; // Moverse a la siguiente fila
+    }
+
+    return true;
 }
