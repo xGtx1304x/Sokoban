@@ -6,6 +6,13 @@
 
 using namespace std;
 
+enum Direccion {
+	Up,
+	Down,
+	Left,
+	Right
+};
+
 class ListaGrid {
 private:
 
@@ -21,11 +28,15 @@ private:
 	};
 
 	NodoGrid* inicio;
+
 public:
 	ListaGrid(string* nivel);
 	virtual ~ListaGrid();
 	void cargarNivel(string* nivel);
-	bool mover(int dir);
+	NodoGrid* obtenerPosicion(int x, int y);
+	int* posicionJugador();
+	NodoGrid* buscarObjeto(char o);
+	bool mover(Direccion dir);
 	bool ganador();
 	void generarMatriz(int n, int m);
 	string toString();

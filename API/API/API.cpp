@@ -7,15 +7,19 @@ int main()
 {
     string* nivel = new string[10]{
         "##########",
-        "#   @    #",
         "#        #",
-        "# .      #",
         "#        #",
-        "#      ! #",
+        "#   @$.  #",
+        "#        #",
+        "#        #",
         "#        #",
         "##########"
     };
     ListaGrid a(nivel);
+    cout << a.toString() << endl << endl;
+
+    a.mover(Right);
+
     cout << a.toString() << endl;
     return 0;
 }
