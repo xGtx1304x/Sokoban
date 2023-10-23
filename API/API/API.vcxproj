@@ -137,6 +137,9 @@
     <ClInclude Include="ListaGrid.h" />
     <ClInclude Include="utiles.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Niveles.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

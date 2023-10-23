@@ -1,15 +1,52 @@
 #include "Juego.h"
 
-Juego::Juego(string** mapas) {
+Juego::Juego() {
 	for (int i = 0; i < 3; i++) {
-		this->mapas[i] = new ListaGrid(mapas[i]);
-		this->mapa[i] = mapas[i];
+		this->mapa[i] = new string[20];
+	}
+	this->cargarMapas();
+	for (int i = 0; i < 3; i++) {
+		this->mapas[i] = new ListaGrid(this->mapa[i]);
 	}
 	this->nivel = 0;
 }
 
 bool Juego::ganador() {
 	return mapas[nivel]->ganador();
+}
+
+ListaGrid** Juego::getMapas() {
+	return this->mapas;
+}
+
+void Juego::cargarMapas() {
+    ifstream archivo("Niveles.txt");
+
+    if (!archivo) {
+        std::cerr << "No se pudo abrir el archivo para lectura." << std::endl;
+        return;
+    }
+
+    string linea;
+    int numeroNivel = 0;
+	int n = 0;
+    bool enNivel = false;
+
+    while (std::getline(archivo, linea)) {
+        if (linea.empty()) {
+            // Cambio de nivel
+            enNivel = false;
+            numeroNivel++;
+			n = 0;
+			continue;
+        }
+
+        // Imprimir la línea de la representación del nivel
+        cout << linea << "\n";
+		this->mapa[numeroNivel][n++] = linea;
+    }
+
+    archivo.close();
 }
 
 void Juego::reset() {

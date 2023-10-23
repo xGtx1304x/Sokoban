@@ -5,7 +5,7 @@
 
 using namespace std;
 
-string** getNiveles() {
+/*string** getNiveles() {
     string** niveles = new string*[3];
     niveles[0] = new string[10]{
         "#####",
@@ -36,23 +36,21 @@ string** getNiveles() {
         "#########"
     };
     return niveles;
-}
+}*/
 
-int main()
-{
-    string** niveles = getNiveles();
-    Juego juego(niveles);
+int main() {
+    Juego juego;
     bool ganador = false;
     bool salir = false;
     int op = 0;
-
+    
     HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
     if (hStdin == INVALID_HANDLE_VALUE) {
         return 1;
     }
     DWORD numRead;
     INPUT_RECORD irInBuf[128];
-
+    
     while (!juego.final() && !salir) {
         ReadConsoleInput(hStdin, irInBuf, 128, &numRead);
         ganador = false;
@@ -61,7 +59,7 @@ int main()
         cout << "- Presiona la tecla 'R' para reiniciar el nivel -" << endl;
         cout << "- Presiona la tecla 'ESC' para salir -" << endl << endl;
         cout << juego.mostrarNivel() << endl;
-
+        
         for (DWORD i = 0; i < numRead; i++) {
             if (irInBuf[i].EventType == KEY_EVENT && irInBuf[i].Event.KeyEvent.bKeyDown) {
                 // Se ha presionado una tecla
@@ -134,6 +132,6 @@ int main()
     system("cls");
     if (juego.final()) cout << "Felicidades! Ganaste!" << endl;
     cout << "Gracias por jugar!" << endl;
-
+    
     return 0;
 }

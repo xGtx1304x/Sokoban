@@ -4,6 +4,8 @@
 #include "ListaGrid.h"
 #include <sstream>
 #include <vector>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -14,9 +16,11 @@ private:
 	int nivel;
 	string* mapa[3];
 public:
-	Juego(string** mapas);
+	Juego();
 	virtual ~Juego() = default;
+	ListaGrid** getMapas();
 	bool ganador();
+	void cargarMapas();
 	void reset();
 	bool mover(Direccion dir);
 	string mostrarNivel();
